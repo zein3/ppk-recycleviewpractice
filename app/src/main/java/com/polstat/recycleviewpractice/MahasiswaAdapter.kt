@@ -6,7 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MahasiswaAdapter(private val dataList: Array<Mahasiswa>) :
+class MahasiswaAdapter(
+    private val dataList: Array<Mahasiswa>,
+    private val onItemClicked: (Mahasiswa) -> Unit
+) :
     RecyclerView.Adapter<MahasiswaAdapter.MahasiswaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MahasiswaViewHolder {
@@ -19,6 +22,7 @@ class MahasiswaAdapter(private val dataList: Array<Mahasiswa>) :
         holder.txtNama.text = dataList[position].nama
         holder.txtNim.text = dataList[position].nim
         holder.txtNoHp.text = dataList[position].nohp
+        holder.itemView.setOnClickListener { onItemClicked(dataList[position]) }
     }
 
     override fun getItemCount() = dataList.size

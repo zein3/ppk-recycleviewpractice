@@ -2,6 +2,7 @@ package com.polstat.recycleviewpractice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -18,7 +19,9 @@ class MainActivity : AppCompatActivity() {
         addData()
 
         recyclerView = findViewById(R.id.recycler_view)
-        adapter = MahasiswaAdapter(mahasiswaList)
+        adapter = MahasiswaAdapter(mahasiswaList) { mahasiswa ->
+            Toast.makeText(this, "Anda telah mengklik ${mahasiswa.nama}", Toast.LENGTH_LONG).show()
+        }
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
